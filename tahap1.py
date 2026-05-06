@@ -148,6 +148,7 @@ def stage1_page():
     # =========================
     # 🎯 INPUT JAWABAN
     # =========================
+    from PIL import Image
     image3 = Image.open("assets/ascii.png")
     try:
         st.image(image3, caption='', use_container_width=True)
