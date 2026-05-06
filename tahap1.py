@@ -1,6 +1,3 @@
-from modal import Image
-
-
 def stage1_page():
     import streamlit as st
     import pandas as pd
