@@ -1,5 +1,5 @@
 """
-Legacy adapter for UI components. Re-exports from src.components.
+UI and presentation components package.
 """
 from src.components.styles import GLOBAL_THEME_CSS
 from src.components.hud import render_cyber_hud
