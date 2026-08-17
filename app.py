@@ -1,5 +1,5 @@
 """
-The Vanishing Currency // Shadow of the System
+The System That Learns Back
 Main Application Entrypoint
 """
 import streamlit as st
@@ -50,7 +50,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     stage_options = {
-        0: "00 · Intro // Cover",
+        0: "00 · Intro // Briefing",
         1: "01 · Stage 1: Noise",
         2: "02 · Stage 2: Convergence",
         3: "03 · Stage 3: Access",
@@ -72,7 +72,7 @@ with st.sidebar:
         st.rerun()
 
     st.markdown("---")
-    if st.button("🔄 Reset Investigasi ke Awal"):
+    if st.button("🔄 Reset Investigation to Start"):
         st.session_state.current_stage = 0
         st.rerun()
 

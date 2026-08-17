@@ -1,5 +1,5 @@
 """
-Stage 3: Shadow Access // Langkah Yang Terlupakan
+Stage 3: Shadow Access // The Forgotten Step
 """
 import streamlit as st
 import seaborn as sns
@@ -28,10 +28,10 @@ def stage3_page():
     render_stage_banner(
         stage_num="03",
         chapter_num="03",
-        title_line1="Langkah Yang",
-        title_line2="Terlupakan",
+        title_line1="The Forgotten",
+        title_line2="Step",
         accent_color="#06b6d4",
-        meta_tags=["id: null", "akses: penuh", "ada sejak awal", "bukan penyusup", "stage: access"],
+        meta_tags=["id: null", "access: full", "present since v1", "not an intruder", "stage: access"],
         ticker_items=ticker_items,
         node_name="NODE_C",
         status_label="RESTRICTED // LVL-3",
@@ -44,24 +44,24 @@ def stage3_page():
     st.markdown("""
     <div class="glass-card hero">
         <div class="main-title">🧩 Stage 3</div>
-        <div class="subtitle">Shadow Access // Langkah Yang Terlupakan</div>
+        <div class="subtitle">Shadow Access // The Forgotten Step</div>
         <div class="story-text">
-Semua jejak mengarah ke satu pintu masuk pusat data.
+All forensic traces lead to the central data vault gateway.
 
-Log akses dibuka.
-Awalnya seluruh entri terlihat normal dan sesuai protokol.
+Access logs are unsealed.
+Initially, every single record appears standard and protocol-compliant.
 
-Namun…
-<b>ada sesuatu yang tidak masuk akal dalam catatan autentikasi.</b>
+However…
+<b>an irreconcilable paradox surfaces in the authentication registry.</b>
 <hr>
-<i>"Semua user masuk lewat pintu login..."</i>
-<i>"...atau setidaknya, secara regulasi seharusnya begitu."</i>
+<i>"All users must enter through the login gateway..."</i>
+<i>"...or at least, by mandatory policy they should."</i>
 <hr>
-Ketika pergerakan aktivitas setiap akun dicocokkan dengan catatan otentikasi sistem,
-muncul paradoks yang membingungkan:
+When access activity per user is cross-referenced against official server login handshakes,
+a chilling discrepancy arises:
 
-Ada entitas yang terus-menerus memanipulasi file, mengekstraksi tabel, dan mengubah parameter…
-<b>namun tidak pernah tercatat melewati gerbang login satu kali pun.</b>
+An entity continuously reads tables, executes modifications, and manipulates files…
+<b>without ever having logged into the system even once.</b>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -94,23 +94,23 @@ Ada entitas yang terus-menerus memanipulasi file, mengekstraksi tabel, dan mengu
 
     # 6. Data Log Section
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">📂 Komparasi Log Forensik: Akses vs Sistem</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">📂 Forensic Log Comparison: Access vs System</div>', unsafe_allow_html=True)
 
     tab1, tab2 = st.tabs(["📋 Access Log Forensics", "🛡️ System Security Events"])
 
     with tab1:
-        st.markdown("<div style='font-size:0.9rem; color:#94a3b8; margin-bottom:0.75rem;'>Catatan interaksi langsung pada basis data dan file transaksi:</div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size:0.9rem; color:#94a3b8; margin-bottom:0.75rem;'>Direct database manipulation and transaction ledger file reads:</div>", unsafe_allow_html=True)
         st.dataframe(df_access, use_container_width=True, height=280)
 
     with tab2:
-        st.markdown("<div style='font-size:0.9rem; color:#94a3b8; margin-bottom:0.75rem;'>Catatan otentikasi resmi dan session handshake dari server gateway:</div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size:0.9rem; color:#94a3b8; margin-bottom:0.75rem;'>Official server session handshakes and authentication logs:</div>", unsafe_allow_html=True)
         st.dataframe(df_system, use_container_width=True, height=280)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
     # 7. Visualization Section
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">📊 Matriks Distribusi Aktivitas Jam per User</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">📊 Hourly User Activity Distribution Matrix</div>', unsafe_allow_html=True)
 
     df_access["hour"] = df_access["timestamp"].dt.hour
     pivot = df_access.pivot_table(
@@ -148,10 +148,10 @@ Ada entitas yang terus-menerus memanipulasi file, mengekstraksi tabel, dan mengu
             <span class="term-dot green"></span>
             <span class="terminal-title">ACCESS PARADOX ANOMALY LOG</span>
         </div>
-💡 <b>HINT INVESTIGASI FORENSIK:</b><br>
-• Setiap user resmi tercatat melakukan `login_success` di `System Log` sebelum mengeksekusi perintah di `Access Log`.<br>
-• Periksa apakah ada satu User ID yang <b>aktif secara konstan setiap jam</b> di Access Log, namun <b>sama sekali tidak pernah memiliki riwayat login_success</b> di System Log!<br>
-• Entitas ini bukan tamu, bukan penyusup luar… entitas ini hidup di dalam arsitektur dasar.
+💡 <b>FORENSIC INVESTIGATION HINT:</b><br>
+• Every legitimate human user records a `login_success` event in the `System Log` prior to issuing commands in the `Access Log`.<br>
+• Detect the single User ID that is <b>consistently active across all 24 hours</b> in the Access Log, yet <b>lacks even a single login_success</b> in the System Log!<br>
+• This entity is not an outsider or an intruder… it resides natively within the core architecture.
     </div>
     """, unsafe_allow_html=True)
 
@@ -159,19 +159,19 @@ Ada entitas yang terus-menerus memanipulasi file, mengekstraksi tabel, dan mengu
 
     # 8. Final Challenge Section
     st.markdown('<div class="glass-card hero">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🎯 Identifikasi Entitas Bayangan (Shadow User)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">🎯 Identify the Shadow Entity (Ghost User)</div>', unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-text" style="margin-bottom:1.5rem;">
-Siapakah User ID anomali yang selalu aktif beroperasi di dalam sistem tanpa pernah sekalipun melakukan proses login resmi?
+Which User ID operates actively inside the system without ever undergoing the required login authentication process?
     </div>
     """, unsafe_allow_html=True)
 
-    answer = st.text_input("Masukkan User ID:", placeholder="Contoh: XJ-9A", key="stage3_answer")
+    answer = st.text_input("Enter User ID:", placeholder="e.g. XJ-9A", key="stage3_answer")
 
-    if st.button("🔍 Verifikasi Identitas Entitas", key="stage3_btn"):
+    if st.button("🔍 Verify Entity Identity", key="stage3_btn"):
         if validate_stage3_answer(answer):
-            st.success("✅ ANOMALY DETECTED // Entitas 'XJ-9A' Terkonfirmasi!")
+            st.success("✅ ANOMALY DETECTED // Shadow Entity 'XJ-9A' Confirmed!")
             st.markdown("""
             <div class="terminal">
                 <div class="terminal-header">
@@ -180,17 +180,17 @@ Siapakah User ID anomali yang selalu aktif beroperasi di dalam sistem tanpa pern
                     <span class="term-dot green"></span>
                     <span class="terminal-title">SYS_IDENTITY // RESOLVED</span>
                 </div>
-&gt; <i>"Dia tidak pernah login..."</i><br>
-&gt; <i>"...tapi selalu ada di setiap detak jam sistem."</i><br><br>
-&gt; Itu bukan user manusia biasa.<br>
-&gt; Itu adalah proses internal yang tersembunyi sejak versi pertama sistem dirilis.<br><br>
-&gt; <i>Membuka protokol investigasi Stage 4: Extraction...</i>
+&gt; <i>"It never logged in..."</i><br>
+&gt; <i>"...yet it pulses through every second of system runtime."</i><br><br>
+&gt; That is no ordinary human operator.<br>
+&gt; That is an internal architectural daemon embedded since the initial release.<br><br>
+&gt; <i>Opening Stage 4 dossier: Extraction...</i>
             </div>
             """, unsafe_allow_html=True)
 
             st.session_state.current_stage = 4
             st.rerun()
         else:
-            st.error("❌ User ID salah. Bandingkan daftar user di Access Log dengan daftar akun yang berhasil login di System Log.")
+            st.error("❌ Incorrect User ID. Compare the active users in Access Log against those with verified login_success in System Log.")
 
     st.markdown('</div>', unsafe_allow_html=True)

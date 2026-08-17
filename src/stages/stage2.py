@@ -1,5 +1,5 @@
 """
-Stage 2: Convergence // Bayangan Di Langit
+Stage 2: Convergence // Shadows in the Sky
 """
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -27,10 +27,10 @@ def stage2_page():
     render_stage_banner(
         stage_num="02",
         chapter_num="02",
-        title_line1="Bayangan",
-        title_line2="Di Langit",
+        title_line1="Shadows",
+        title_line2="In The Sky",
         accent_color="#f59e0b",
-        meta_tags=["semua jalur → satu titik", "sistem bayangan", "lintas yurisdiksi", "tidak tercatat"],
+        meta_tags=["all paths → single node", "shadow architecture", "cross-border routing", "unregistered"],
         ticker_items=ticker_items,
         node_name="NODE_B",
         status_label="RESTRICTED // LVL-2",
@@ -43,27 +43,27 @@ def stage2_page():
     st.markdown("""
     <div class="glass-card hero">
         <div class="main-title">🧩 Stage 2</div>
-        <div class="subtitle">Convergence // Bayangan Di Langit</div>
+        <div class="subtitle">Convergence // Shadows in the Sky</div>
         <div class="story-text">
-Awalnya tidak ada yang aneh.
+At first glance, nothing appears anomalous.
 
-Transaksi internasional berjalan seperti biasa.
-Tidak ada pola yang mencurigakan.
-Tidak ada pusat yang terlihat secara kasat mata.
+International wire transactions execute within normal variance parameters.
+No blatant routing loops.
+No obvious single bottleneck visible on raw tables.
 <hr>
-Namun ketika data divisualisasikan ulang ke dalam topologi jaringan…
-<b>struktur mulai berubah.</b>
+Yet when the dataset is projected onto a topological graph…
+<b>the underlying geometry transforms.</b>
 <hr>
-Bukan karena datanya yang berubah.
-Tapi karena <b>sudut pandang dalam memetakannya yang berbeda.</b>
+Not because the transactions changed.
+Rather because <b>the vantage point reveals gravitational pull.</b>
 <hr>
-Beberapa node terlihat jauh lebih "berat" daripada yang lain.
-Bukan secara volume nominal semata…
-melainkan secara <b>sentralitas koneksi global.</b>
+Certain nodes carry disproportionate weight compared to the rest.
+Not solely by nominal transaction volume…
+but by <b>global connection degree centrality.</b>
 <hr>
-Dan semakin lama diamati, semakin jelas satu kenyataan:
-Sistem ini tidak tersebar secara acak.
-Sistem ini <b>tertarik kuat menuju satu titik gravitasi.</b>
+And the longer one observes the topology, the clearer the reality becomes:
+This capital network is not decentralized.
+It is <b>irrevocably pulled toward a single gravitational center.</b>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -92,19 +92,19 @@ Sistem ini <b>tertarik kuat menuju satu titik gravitasi.</b>
 
     # 6. Data Exploration Section
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">📂 Matriks Transaksi Cross-Border Global</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">📂 Global Cross-Border Transaction Matrix</div>', unsafe_allow_html=True)
 
     st.dataframe(df, use_container_width=True, height=280)
     st.markdown('</div>', unsafe_allow_html=True)
 
     # 7. Code Reconstruction & Network Visualization Section
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🔍 Rekonstruksi Script Visualisasi Graph</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">🔍 Graph Visualization Script Reconstruction</div>', unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-text" style="margin-bottom:1.5rem;">
-Seorang analis forensik sebelumnya mencoba memetakan topologi transaksi ini, namun scriptnya terputus pada deklarasi edge list.
-Lengkapi parameter kolom sumber dan tujuan berikut agar mesin grafis dapat mengompilasi peta jaringan:
+A forensic analyst previously attempted to map this network, but their script was left incomplete at the edge list definition.
+Supply the missing DataFrame column parameters to compile the network graph:
     </div>
     """, unsafe_allow_html=True)
 
@@ -112,7 +112,7 @@ Lengkapi parameter kolom sumber dan tujuan berikut agar mesin grafis dapat mengo
 import networkx as nx
 import matplotlib.pyplot as plt
 
-# Bangun struktur edge list berdasarkan kolom DataFrame
+# Construct edge list from DataFrame columns
 G = nx.from_pandas_edgelist(df, source='...[A]...', target='...[B]...')
 
 pos = nx.spring_layout(G, seed=42)
@@ -123,20 +123,20 @@ nx.draw(G, pos, with_labels=True, node_size=node_sizes)
 plt.show()
 """, language="python")
 
-    st.markdown('<div class="section-title" style="font-size:1.3rem; margin-top:1.5rem;">💻 Parameter Injeksi Kolom</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="font-size:1.3rem; margin-top:1.5rem;">💻 Parameter Injection Fields</div>', unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
     with col1:
-        A = st.text_input("Parameter [A] (Source Column):", placeholder="Contoh: source_country", key="stage2_A")
+        A = st.text_input("Parameter [A] (Source Column):", placeholder="e.g. source_country", key="stage2_A")
     with col2:
-        B = st.text_input("Parameter [B] (Destination Column):", placeholder="Contoh: destination_country", key="stage2_B")
+        B = st.text_input("Parameter [B] (Destination Column):", placeholder="e.g. destination_country", key="stage2_B")
 
-    if st.button("⚡ Kompilasi & Jalankan Visualisasi Jaringan", key="stage2_run_code"):
+    if st.button("⚡ Compile & Render Network Topology", key="stage2_run_code"):
         clean_A = A.strip().lower().replace(" ", "_")
         clean_B = B.strip().lower().replace(" ", "_")
 
         if clean_A == "source_country" and clean_B == "destination_country":
-            st.success("✅ Script Sukses Dikompilasi! Merender Topologi Jaringan Global...")
+            st.success("✅ Script Compiled Successfully! Rendering Global Graph Topology...")
 
             G = nx.from_pandas_edgelist(df, "source_country", "destination_country")
             degrees = dict(G.degree())
@@ -208,33 +208,33 @@ plt.show()
                     <span class="term-dot green"></span>
                     <span class="terminal-title">TOPOLOGY FORENSIC READOUT</span>
                 </div>
-💡 <b>HINT FORENSIK JARINGAN:</b><br>
-• <b>Titik Gravitasi Utama</b> memiliki koneksi degree tertinggi ({top_deg} koneksi langsung).<br>
-• Node berukuran paling masif dan berwarna emas merupakan muara akhir dari skema sirkulasi aset.<br>
-• Hub teridentifikasi: <b>[CLASSIFIED REGION - DEGREE #{top_deg}]</b>
+💡 <b>NETWORK FORENSIC HINT:</b><br>
+• <b>Primary Gravitational Hub</b> exhibits the highest degree centrality ({top_deg} direct connections).<br>
+• The largest golden node serves as the ultimate destination for cross-border capital circulation.<br>
+• Identified Central Hub: <b>[CLASSIFIED REGION - DEGREE #{top_deg}]</b>
             </div>
             """, unsafe_allow_html=True)
 
         else:
-            st.error("❌ Parameter Kolom Tidak Valid! Pastikan nama kolom sesuai persis dengan header DataFrame (`source_country` dan `destination_country`).")
+            st.error("❌ Column parameter error! Ensure names match the exact DataFrame headers (`source_country` and `destination_country`).")
 
     st.markdown('</div>', unsafe_allow_html=True)
 
     # 8. Final Challenge Section
     st.markdown('<div class="glass-card hero">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🎯 Identifikasi Pusat Gravitasi Sistem</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">🎯 Identify the Gravitational Hub</div>', unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-text" style="margin-bottom:1.5rem;">
-Berdasarkan peta topologi jaringan di atas, ke negara/entitas manakah seluruh pusaran transaksi ini berkonvergensi?
+Based on the topological graph rendered above, which nation/entity acts as the focal center of convergence?
     </div>
     """, unsafe_allow_html=True)
 
-    answer = st.text_input("Masukkan Nama Negara / Node Pusat:", placeholder="Contoh: UNITED STATES", key="stage2_answer")
+    answer = st.text_input("Enter Country / Hub Name:", placeholder="e.g. UNITED STATES", key="stage2_answer")
 
-    if st.button("🚀 Verifikasi Temuan Hub", key="stage2_verify_btn"):
+    if st.button("🚀 Verify Central Hub", key="stage2_verify_btn"):
         if validate_stage2_answer(answer):
-            st.success("✅ TEPAT! Semua jalur dan koneksi gravitasi mengarah ke UNITED STATES.")
+            st.success("✅ CORRECT! All topological trajectories converge toward UNITED STATES.")
             st.markdown("""
             <div class="terminal">
                 <div class="terminal-header">
@@ -243,15 +243,15 @@ Berdasarkan peta topologi jaringan di atas, ke negara/entitas manakah seluruh pu
                     <span class="term-dot green"></span>
                     <span class="terminal-title">SYS_CONVERGENCE // CONFIRMED</span>
                 </div>
-&gt; Pola konvergensi berhasil dipetakan.<br>
-&gt; Aliran dana melintasi puluhan yurisdiksi sebelum terkonsentrasi di satu titik terminal.<br>
-&gt; <i>Membuka berkas investigasi Stage 3: Shadow Access...</i>
+&gt; Convergence pattern mapped.<br>
+&gt; Capital flows across dozens of legal jurisdictions before accumulating into a terminal node.<br>
+&gt; <i>Accessing Stage 3 dossier: Shadow Access...</i>
             </div>
             """, unsafe_allow_html=True)
 
             st.session_state.current_stage = 3
             st.rerun()
         else:
-            st.error("❌ Belum tepat. Perhatikan node dengan ukuran terbesar dan label paling dominan pada visualisasi graf.")
+            st.error("❌ Incorrect. Scrutinize the node with highest degree centrality and prominent label in the graph.")
 
     st.markdown('</div>', unsafe_allow_html=True)

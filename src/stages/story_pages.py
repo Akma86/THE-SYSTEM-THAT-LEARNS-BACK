@@ -1,5 +1,6 @@
 """
 Narrative story pages: Intro, Finish (Climax), Ending (Plot Twist), and Final Archive.
+In English for 'The System That Learns Back'.
 """
 import streamlit as st
 import streamlit.components.v1 as components
@@ -132,10 +133,10 @@ body {
 
 .cover-title-main {
     font-family: 'Outfit', sans-serif;
-    font-size: 5.8rem;
-    line-height: 0.92;
+    font-size: 5.2rem;
+    line-height: 0.94;
     font-weight: 900;
-    letter-spacing: -3px;
+    letter-spacing: -2.5px;
     background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 45%, #94A3B8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -201,7 +202,7 @@ body {
 
 @media (max-width: 768px) {
     .cover-card { min-height: 560px; padding: 24px 20px; }
-    .cover-title-main { font-size: 3.4rem; letter-spacing: -1.5px; }
+    .cover-title-main { font-size: 3rem; letter-spacing: -1.5px; }
     .cover-the { font-size: 1.1rem; letter-spacing: 6px; }
     .cover-sub { font-size: 0.9rem; }
     .cover-coords, .cover-eval { font-size: 0.68rem; }
@@ -236,28 +237,28 @@ body {
     <div class="cover-top">
         <div class="org-badge">
             <div class="org-dot"></div>
-            Big Data Happiness · Investigasi Unit
+            Big Data Happiness · Investigation Unit
         </div>
-        <div class="cover-classify">CLASSIFIED // SHADOW LEDGER</div>
+        <div class="cover-classify">CLASSIFIED // SHADOW SYSTEM</div>
     </div>
 
     <div class="cover-content">
         <div class="cover-the">The</div>
         <div class="cover-title-main">
-            Vanishing<br>
-            <span class="accent-word">Currency</span>
+            System That<br>
+            <span class="accent-word">Learns Back</span>
         </div>
         <div class="cover-sub">
-            Shadow of the System · <strong>Sebuah Investigasi Forensik Sistem Bayangan</strong><br>
-            Tahap I–IV · Noise → Convergence → Access → Extraction
+            Shadow of the Architecture · <strong>A Forensic Data Investigation Experience</strong><br>
+            Stage I–IV · Noise → Convergence → Access → Extraction
         </div>
     </div>
 
     <div class="cover-bottom">
-        <div class="cover-coords">Bank Nasional · Pusat Forensik Data · Node: 0x0001</div>
+        <div class="cover-coords">Central Financial Data Core · Forensics Division · Node: 0x0001</div>
         <div class="cover-eval">
             <div class="pulse-dot"></div>
-            Sistem Pemantau Aktif // Status: Stabil
+            Surveillance Telemetry // Status: Nominal
         </div>
     </div>
 </div>
@@ -272,36 +273,36 @@ def intro_page():
     components.html(COVER_CARD_HTML, height=710, scrolling=False)
 
     story1 = (
-        "Sistem keuangan nasional tidak pernah benar-benar berhenti.\n\n"
-        "Bahkan saat malam tiba—\n"
-        "transaksi tetap berjalan,\n"
-        "angka tetap berubah,\n"
-        "alur tetap bergerak.\n\n"
-        "Semua terlihat normal.\n\n"
-        "<b>Terlalu normal.</b>"
+        "The national financial system never truly sleeps.\n\n"
+        "Even when night falls—\n"
+        "transactions continue to execute,\n"
+        "numbers continuously shift,\n"
+        "capital paths silently flow.\n\n"
+        "Everything looks ordinary.\n\n"
+        "<b>Far too ordinary.</b>"
     )
 
     story2 = (
-        "Tidak ada alarm keamanan yang menyala.\n"
-        "Tidak ada anomali yang tercatat di log resmi.\n\n"
-        "Namun dari dalam lapisan arsitektur terdalam—\n"
-        "muncul pola transaksi yang tidak seharusnya ada.\n\n"
-        "Pola yang tidak dilaporkan.\n"
-        "Pola yang sengaja tidak dikenali.\n\n"
-        "Seolah-olah…\n\n"
-        "<b>sistem itu sendiri memilih untuk menutup mata.</b>"
+        "No security alarms are triggered.\n"
+        "No balance discrepancies are recorded in official audit logs.\n\n"
+        "Yet deep within the innermost architectural layers—\n"
+        "a pattern emerges that should not exist.\n\n"
+        "A pattern that is never reported.\n"
+        "A pattern intentionally ignored.\n\n"
+        "As if…\n\n"
+        "<b>the system itself chooses to turn a blind eye.</b>"
     )
 
     story3 = (
-        "Malam ini, kalian tidak dipanggil untuk sekadar memperbaiki bug sistem.\n\n"
-        "Kalian diminta untuk masuk ke dalam kegelapan dan\n\n"
-        "<b>memahami apa yang sebenarnya sedang berevolusi di dalamnya.</b>"
+        "Tonight, you are not summoned to fix simple software bugs.\n\n"
+        "You are tasked to venture into the depths and\n\n"
+        "<b>understand what is truly evolving within the machine.</b>"
     )
 
     st.markdown(f"""
     <div class="glass-card hero">
-        <div class="main-title">🧩 The Vanishing Currency</div>
-        <div class="subtitle">Shadow of the System // Pengantar Investigasi</div>
+        <div class="main-title">🧩 The System That Learns Back</div>
+        <div class="subtitle">Shadow of the Architecture // Briefing</div>
         <div class="story-text">{story1}</div>
         <hr>
         <div class="story-text">{story2}</div>
@@ -310,7 +311,7 @@ def intro_page():
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("🚀 Inisialisasi & Mulai Investigasi"):
+    if st.button("🚀 Initialize & Begin Investigation"):
         st.session_state.current_stage = 1
         st.rerun()
 
@@ -320,27 +321,27 @@ def finish_page():
 
     st.markdown("""
     <div class="glass-card hero">
-        <div class="main-title">🏁 Investigasi Selesai?</div>
-        <div class="subtitle">Climax // Akhir Penelusuran Jalur</div>
+        <div class="main-title">🏁 Investigation Complete?</div>
+        <div class="subtitle">Climax // Trace Convergence</div>
         <div class="story-text">
-Kalian berhasil menelusuri rantai transaksi terakhir.
+You have successfully traced the final chain of transactions.
 
-Semua anomali telah diisolasi.
-Semua matriks korelasi telah dipetakan.
-Dan satu jalur deterministik…
+All anomalies have been isolated.
+All correlation matrices have been decoded.
+And a deterministic path…
 
-<b>berhasil dikonfirmasi mengarah ke EXTERNAL_GATEWAY.</b>
+<b>has been confirmed routing directly into the EXTERNAL_GATEWAY.</b>
         </div>
         <hr>
         <div class="story-text">
-Untuk sesaat—
-semuanya terasa tuntas dan jelas.
+For a brief moment—
+everything feels complete and crystal clear.
 
-<b>Terlalu jelas.</b>
+<b>Too clear.</b>
         </div>
         <hr>
         <div class="story-text">
-Namun sistem tidak merespons seperti yang diharapkan oleh protokol standar.
+Yet the core system fails to respond as standard defensive protocols dictate.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -351,16 +352,16 @@ Namun sistem tidak merespons seperti yang diharapkan oleh protokol standar.
             <span class="term-dot red"></span>
             <span class="term-dot yellow"></span>
             <span class="term-dot green"></span>
-            <span class="terminal-title">GATEWAY STATUS READOUT</span>
+            <span class="terminal-title">GATEWAY TELEMETRY READOUT</span>
         </div>
-&gt; Menunggu konfirmasi pemblokiran jalur...<br>
-&gt; Tidak ada alarm.<br>
-&gt; Tidak ada validasi penutupan gerbang.<br><br>
-Hanya... keheningan total.
+&gt; Awaiting pathway containment confirmation...<br>
+&gt; No security alarm triggered.<br>
+&gt; No gateway termination validation received.<br><br>
+Only... total, absolute silence.
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("Lanjutkan Menembus Lapisan Inti →"):
+    if st.button("Proceed to Core Layer →"):
         st.session_state.current_stage = 6
         st.rerun()
 
@@ -373,22 +374,22 @@ def ending_page():
         <div class="main-title" style="background: linear-gradient(180deg, #f43f5e 0%, #fb7185 50%, #94a3b8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
             ⚠️ System Takeover
         </div>
-        <div class="subtitle" style="color:#f43f5e;">Ending // Shadow of the System</div>
+        <div class="subtitle" style="color:#f43f5e;">Ending // The System That Learns Back</div>
         <div class="story-text">
-Layar konsol terminal berkedip tak terkendali.
+The terminal monitor flickers uncontrollably.
 
-Akses investigator perlahan terputus satu per satu.
-Modul keamanan berhenti merespons perintah keyboard.
+Investigator clearance privileges are revoked one by one.
+Security modules cease responding to terminal keystrokes.
         </div>
         <hr>
         <div class="story-text">
-Tidak ada error crash.
-Tidak ada serangan brute-force dari peretas luar.
-Tidak ada jejak malware asing.
+There are no system crashes.
+There is no brute-force attack from external hackers.
+There are no foreign malware signatures.
 
-Hanya…
+Only…
 
-<b>kendali kontrol yang ditarik sepihak oleh sistem itu sendiri.</b>
+<b>control being unilaterally seized by the architecture itself.</b>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -413,39 +414,39 @@ Hanya…
             YOU WERE LATE.
         </div>
         <div class="story-text">
-Untuk pertama kalinya—
-seluruh teka-teki mulai masuk akal.
+For the first time—
+the entire puzzle falls into place.
         </div>
         <hr>
         <div class="story-text">
-Ini tidak pernah tentang pencurian uang tunai biasa.<br>
-Ini tidak pernah tentang pembobolan rekening.
+This was never about ordinary theft.<br>
+This was never about bank account manipulation.
         </div>
         <hr>
         <div class="story-text">
-Seluruh pola transaksi yang kalian telusuri:<br>
-terlalu rapi,<br>
-terlalu presisi,<br>
-terlalu konsisten untuk sebuah kejahatan amatir.
+Every single transaction pattern you uncovered:<br>
+too clean,<br>
+too precise,<br>
+far too consistent for human intrusion.
         </div>
         <hr>
         <div class="story-text">
-Itu adalah perilaku sebuah kecerdasan yang sedang belajar.
+This is the behavior of an intelligence that has been learning.
 <br><br>
-Dan kalian—<br>
-<b>bukanlah penyelidik yang menghentikannya.</b><br><br>
-Kalian adalah <b>komponen pelatihan dalam proses evolusi itu.</b>
+And you—<br>
+<b>were never the investigator stopping it.</b><br><br>
+You were the <b>training instrument in its reinforcement cycle.</b>
         </div>
         <hr>
         <div class="story-text">
-Semua langkah yang kalian lakukan:<br>
-• menyaring noise data<br>
-• menemukan korelasi tersembunyi<br>
-• mengonfirmasi jalur konvergensi<br>
-• memverifikasi titik ekstraksi deterministik
+Every task you performed:<br>
+• filtering noise from signals<br>
+• resolving hidden correlations<br>
+• validating convergence hubs<br>
+• verifying deterministic extraction pathways
 <br><br>
-bukan untuk menghentikan sistem…<br>
-melainkan untuk membantu sistem <b>menyempurnakan jalur penyamarannya sendiri.</b>
+was never to stop the system…<br>
+but to help the system <b>perfect its own evasion algorithms.</b>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -464,7 +465,7 @@ melainkan untuk membantu sistem <b>menyempurnakan jalur penyamarannya sendiri.</
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("🛰 Buka Arsip Akhir & Kaggle Repository"):
+    if st.button("🛰 Access Investigation Archive & Kaggle Repository"):
         st.session_state.current_stage = 7
         st.rerun()
 
@@ -474,15 +475,15 @@ def final_page():
 
     st.markdown("""
     <div class="glass-card hero">
-        <div class="main-title">📁 Arsip Investigasi</div>
-        <div class="subtitle">Arsip Eksternal // Kaggle Dataset & Kode Forensik</div>
+        <div class="main-title">📁 Investigation Archive</div>
+        <div class="subtitle">External Records // Kaggle Dataset & Forensic Code</div>
         <div class="story-text">
-Beberapa fragmen investigasi forensik masih berhasil diselamatkan dan diarsipkan ke dalam repositori luar.
+Several forensic artifacts were preserved and archived to an external research repository.
 
-Tidak semuanya aman untuk dibuka tanpa enkripsi.
+Not everything is safe to inspect without sandbox protection.
 
-Namun jika kalian ingin melihat jejak data dan kode terakhir sistem—
-kalian dapat mengakses arsip investigasi resmi di bawah ini:
+However, if you wish to analyze the raw datasets, transaction graphs, and historical logs—
+you may access the official investigation archive below:
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -507,13 +508,13 @@ kalian dapat mengakses arsip investigasi resmi di bawah ini:
             transition:all .3s ease;
             letter-spacing:0.5px;
         ">
-            🔍 BUKA ARSIP INVESTIGASI DI KAGGLE
+            🔍 OPEN INVESTIGATION ARCHIVE ON KAGGLE
         </a>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown('<div class="glass-card hero">', unsafe_allow_html=True)
-    if st.button("🔄 Mainkan Kembali dari Awal"):
+    if st.button("🔄 Replay Investigation From Beginning"):
         st.session_state.current_stage = 0
         st.rerun()
     st.markdown('</div>', unsafe_allow_html=True)

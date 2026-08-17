@@ -32,7 +32,7 @@ def stage4_page():
         title_line1="Impostor",
         title_line2="Location",
         accent_color="#f97316",
-        meta_tags=["data digantikan", "shadow ledger", "jalur ditinggalkan sengaja", "stage: extraction"],
+        meta_tags=["data mutated", "shadow ledger", "trail left intentionally", "stage: extraction"],
         ticker_items=ticker_items,
         node_name="NODE_D",
         status_label="RESTRICTED // LVL-4",
@@ -44,22 +44,22 @@ def stage4_page():
         <div class="main-title">🧩 Stage 4</div>
         <div class="subtitle">Extraction // Impostor Location</div>
         <div class="story-text">
-Sistem tidak menunjukkan indikasi kegagalan teknis.
-Tidak ada saldo yang tercatat hilang secara nominal.
+The system indicates no technical faults or database crashes.
+No balances are recorded as nominally missing.
 
-Namun ketika ledger transaksi lama dibandingkan dengan snapshot ledger baru…
-<b>sesuatu tidak cocok.</b>
+Yet when historical ledgers are diffed against the latest state snapshot…
+<b>something fails to reconcile.</b>
 <hr>
-Bukan data yang dihapus secara paksa.
-Tapi <b>struktur nilainya yang dialihkan secara terprogram.</b>
+Values were not violently stripped.
+Rather, <b>their structural routing was programmatically diverted.</b>
 <hr>
-Semua masih terlihat valid.
-Semua transaksi di permukaan masih berjalan normal.
+Every transaction still satisfies validation schemas.
+Surface-level operations remain undisturbed.
 
-Dan justru kepatuhan terhadap aturan itulah yang membuatnya begitu mematikan.
+And that exact adherence to rules is what makes it so lethal.
 <hr>
-Di antara ratusan transaksi acak (noise), ada satu jalur deterministik berantai
-yang menyalurkan nilai secara tersembunyi menuju <b>EXTERNAL_GATEWAY.</b>
+Amidst hundreds of stochastic noise edges, a single deterministic chain operates in secret,
+funneling assets directly into the <b>EXTERNAL_GATEWAY.</b>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -148,7 +148,7 @@ yang menyalurkan nilai secara tersembunyi menuju <b>EXTERNAL_GATEWAY.</b>
     clean_signal_nodes = {"NODE_7", "NODE_14", "NODE_18", "NODE_22", "NODE_5"}
 
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🌐 Visualisasi Topologi Shadow Ledger & Extraction Layer</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">🌐 Shadow Ledger & Extraction Layer Topology</div>', unsafe_allow_html=True)
 
     fig, ax = plt.subplots(figsize=(14, 9), dpi=180)
     apply_cyber_plot_style(fig, ax, bg_color="#040914")
@@ -249,11 +249,10 @@ yang menyalurkan nilai secara tersembunyi menuju <b>EXTERNAL_GATEWAY.</b>
             <span class="term-dot green"></span>
             <span class="terminal-title">FLOW ANALYSIS LOG</span>
         </div>
-Dalam jutaan chaos transaksi finansial, terdapat satu pola yang:<br>
-• Tidak memiliki volume terbesar secara nominal.<br>
-• Tidak memiliki frekuensi tersering.<br>
-• <b>Namun paling konsisten secara struktur transfer deterministik.</b><br><br>
-Sistem ini tidak menyembunyikan jalurnya — ia hanya menguburnya di bawah jutaan data noise.
+Amidst millions of stochastic financial transactions, a single pattern emerges that:<br>
+• Holds neither the greatest volume nor the most frequent count.<br>
+• <b>Yet proves 100% consistent across deterministic sequential hops.</b><br><br>
+The machine does not hide its route — it simply buries it beneath immense layers of noise.
     </div>
     """, unsafe_allow_html=True)
 
@@ -278,22 +277,22 @@ Sistem ini tidak menyembunyikan jalurnya — ia hanya menguburnya di bawah jutaa
 
     # 8. Final Challenge Section
     st.markdown('<div class="glass-card hero">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🎯 Identifikasi Titik Awal Deterministik (Origin Node)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">🎯 Identify Deterministic Origin Node</div>', unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-text" style="margin-bottom:1.5rem;">
-Temukan node awal yang memicu rantai ekstraksi deterministik menuju <b>EXTERNAL_GATEWAY</b>:
+Pinpoint the initial origin node that triggers the deterministic extraction sequence toward <b>EXTERNAL_GATEWAY</b>:
     </div>
     """, unsafe_allow_html=True)
 
-    answer = st.text_input("Masukkan Nama Node Awal:", placeholder="Contoh: NODE_7", key="stage4_answer")
+    answer = st.text_input("Enter Origin Node Identifier:", placeholder="e.g. NODE_7", key="stage4_answer")
 
-    if st.button("🚀 Analisis Aliran Rantai Deterministik", key="stage4_btn"):
+    if st.button("🚀 Analyze Deterministic Pathway", key="stage4_btn"):
         node_input = answer.strip().upper().replace(" ", "_")
         score = evaluate_start(node_input)
 
         if validate_stage4_answer(node_input):
-            st.success("✔ PATTERN CONFIDENCE: 100% // Rantai Deterministik Sempurna!")
+            st.success("✔ PATTERN CONFIDENCE: 100% // Deterministic Chain Confirmed!")
             st.markdown("""
             <div class="terminal">
                 <div class="terminal-header">
@@ -302,10 +301,10 @@ Temukan node awal yang memicu rantai ekstraksi deterministik menuju <b>EXTERNAL_
                     <span class="term-dot green"></span>
                     <span class="terminal-title">EXTRACTION PATHWAY CONFIRMED</span>
                 </div>
-&gt; Rantai Deterministik Terdeteksi:<br>
+&gt; Deterministic Chain Isolated:<br>
 &gt; <b>NODE_7 → NODE_14 → NODE_18 → NODE_22 → NODE_5 → EXTERNAL_GATEWAY</b><br><br>
-&gt; <i>Ini bukan sekadar transaksi keuangan...</i><br>
-&gt; <i>Ini adalah sistem yang sedang mengarahkan dirinya sendiri untuk berevolusi.</i>
+&gt; <i>This was never mere capital movement...</i><br>
+&gt; <i>This is the architecture teaching itself to evolve.</i>
             </div>
             """, unsafe_allow_html=True)
 
@@ -313,8 +312,8 @@ Temukan node awal yang memicu rantai ekstraksi deterministik menuju <b>EXTERNAL_
             st.rerun()
 
         elif score >= 2:
-            st.warning("⚠️ PARTIAL MATCH // Anda berada di dekat jalur aliran, tetapi bukan merupakan titik pangkal mula.")
+            st.warning("⚠️ PARTIAL MATCH // You are adjacent to the active stream, but not at the initial origin node.")
         else:
-            st.error("✖ Titik awal tidak terdeteksi dalam pola deterministik. Periksa kembali struktur nilai berurutan pada graf.")
+            st.error("✖ No deterministic trajectory detected from this node. Re-evaluate sequential value steps on the graph.")
 
     st.markdown('</div>', unsafe_allow_html=True)

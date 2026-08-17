@@ -1,5 +1,5 @@
 """
-Stage 1: Noise // Gemuruh Dalam Diam
+Stage 1: Noise // Rumblings in the Silence
 """
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -31,10 +31,10 @@ def stage1_page():
     render_stage_banner(
         stage_num="01",
         chapter_num="01",
-        title_line1="Gemuruh",
-        title_line2="Dalam Diam",
+        title_line1="Rumblings",
+        title_line2="In The Silence",
         accent_color="#10b981",
-        meta_tags=["anomali terdeteksi", "audit: [null]", "signal: terlalu stabil", "stage: noise"],
+        meta_tags=["anomaly detected", "audit: [null]", "signal: too stable", "stage: noise"],
         ticker_items=ticker_items,
         node_name="NODE_A",
         status_label="RESTRICTED // LVL-1",
@@ -47,36 +47,36 @@ def stage1_page():
     st.markdown("""
     <div class="glass-card hero">
         <div class="main-title">🧩 Stage 1</div>
-        <div class="subtitle">Noise // Gemuruh Dalam Diam</div>
+        <div class="subtitle">Noise // Rumblings in the Silence</div>
         <div class="story-text">
-Malam itu, sistem keuangan nasional berjalan seperti biasa.
+That night, the national financial infrastructure was operating as usual.
 
-Tidak ada gangguan.
-Tidak ada alarm.
-Tidak ada alasan untuk khawatir.
+No outages recorded.
+No alarms triggered.
+No immediate reason for suspicion.
 
-Setidaknya… di permukaan.
+At least… on the surface.
 <hr>
-Transaksi mengalir seperti setiap hari.
-Angka naik dan turun sesuai pola yang bisa diprediksi.
+Transactions flowed steadily like any other day.
+Values rose and fell according to predictable seasonal curves.
 
-Semuanya terlihat stabil.
-<b>Terlalu stabil.</b>
+Everything looked stable.
+<b>Far too stable.</b>
 <hr>
-Seorang analis membuka dashboard utama.
-Ia berhenti.
+A data analyst opens the primary monitoring dashboard.
+They pause.
 
-Bukan karena ada error.
-Tapi karena… <b>sesuatu terlihat terlalu "rapi".</b>
+Not because an error caught their eye.
+Rather because… <b>something looked unnervingly orderly.</b>
 <hr>
-Dalam lautan data yang bergerak acak,
-ada satu bagian yang tidak ikut bergerak.
+Amidst the turbulent sea of stochastic data,
+one segment remained strangely untouched by randomness.
 
-Tidak mencolok. Tidak mencurigakan.
-Hanya… <b>berbeda.</b>
+Not flashy. Not suspicious.
+Just… <b>different.</b>
 <hr>
-Dan di sistem yang seharusnya tidak punya ingatan,
-bagian itu terasa seperti sesuatu yang sedang menunggu untuk dikenali.
+And in a stateless machine that was never designed to have a memory,
+that segment felt like a beacon waiting to be acknowledged.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -137,19 +137,19 @@ bagian itu terasa seperti sesuatu yang sedang menunggu untuk dikenali.
 
     # 7. Analysis Section
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🔍 Modul Analisis Forensik Data</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">🔍 Data Forensics Analysis Module</div>', unsafe_allow_html=True)
 
     option = st.radio(
-        "Pilih Instrumen Analisis:",
-        ["🔥 Heatmap Korelasi Antar-Akun", "📋 Tabel Data Transaksi Lengkap"],
+        "Select Analytical Instrument:",
+        ["🔥 Cross-Account Correlation Heatmap", "📋 Full Transaction Dataset"],
         horizontal=True
     )
 
     if "Heatmap" in option:
         st.markdown("""
         <div class="story-text" style="margin-bottom:1.5rem;">
-Tidak semua yang berbeda itu mencolok.
-Kadang… justru yang paling <b>"tenang"</b> dan memiliki korelasi tersembunyi.
+Not all anomalies are noisy spikes.
+Sometimes… the most dangerous patterns are the ones that remain <b>unnaturally quiet</b> and synchronized.
         </div>
         """, unsafe_allow_html=True)
 
@@ -178,41 +178,41 @@ Kadang… justru yang paling <b>"tenang"</b> dan memiliki korelasi tersembunyi.
     else:
         st.markdown("""
         <div class="story-text" style="margin-bottom:1.5rem;">
-Kadang jawabannya tidak muncul dari perbandingan satu per satu…
-melainkan dari <b>melihat seluruh matriks data sekaligus.</b>
+Sometimes the answer does not emerge from comparative slices…
+but from <b>observing the entire matrix as a single entity.</b>
         </div>
         """, unsafe_allow_html=True)
 
         st.dataframe(df, use_container_width=True, height=350)
-        st.info("💡 **HINT ANALISIS**: Perhatikan pergerakan nilai data. Tidak semua anomali terlihat seperti spike atau error yang meledak — beberapa anomali justru bersembunyi dalam pola yang terlalu teratur.")
+        st.info("💡 **ANALYST HINT**: Examine the rate of change across accounts. Anomalies don't always appear as errors — some present themselves as suspicious regularity.")
 
     st.markdown('</div>', unsafe_allow_html=True)
 
     # 8. Final Clue & Hidden Message Section
     st.markdown('<div class="glass-card hero">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🎯 Dekripsi Pesan Tersembunyi</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">🎯 Decrypt Hidden Message</div>', unsafe_allow_html=True)
 
     ascii_file = ASSET_PATHS["ascii_art"]
     if os.path.exists(ascii_file):
         img = Image.open(ascii_file)
-        st.image(img, use_container_width=True, caption="[RESTRICTED ARTIFACT] // Memori ASCII Buffer Dump")
+        st.image(img, use_container_width=True, caption="[RESTRICTED ARTIFACT] // ASCII Memory Buffer Dump")
 
     st.markdown("""
     <div class="story-text" style="margin-top:1.5rem; margin-bottom:1.5rem;">
-Sebuah pesan terenkripsi terpatri dalam fragmen ASCII buffer dump di atas.
-Baca dan temukan frasa tersembunyi untuk membuka akses ke Stage berikutnya:
+An encrypted phrase is embedded within the ASCII buffer dump artifact above.
+Decipher the hidden words to unlock authentication for the next stage:
     </div>
     """, unsafe_allow_html=True)
 
     answer = st.text_input(
-        "Masukkan kata/frasa yang kamu temukan:",
-        placeholder="Ketik jawaban di sini (contoh: YOU ARE LATE)...",
+        "Enter the discovered keyphrase:",
+        placeholder="Type answer here (e.g. YOU ARE LATE)...",
         key="stage1_input"
     )
 
-    if st.button("🔓 Kirim & Validasi Akses", key="stage1_btn"):
+    if st.button("🔓 Submit & Validate Access", key="stage1_btn"):
         if validate_stage1_answer(answer):
-            st.success("✅ ACCESS GRANTED // Kunci Otentikasi Terbuka!")
+            st.success("✅ ACCESS GRANTED // Authentication Key Validated!")
             st.markdown("""
             <div class="terminal">
                 <div class="terminal-header">
@@ -221,19 +221,19 @@ Baca dan temukan frasa tersembunyi untuk membuka akses ke Stage berikutnya:
                     <span class="term-dot green"></span>
                     <span class="terminal-title">SYS_DECRYPT // SUCCESS</span>
                 </div>
-&gt; Layar berkedip.<br>
-&gt; Satu baris teks muncul: <b>YOU ARE LATE.</b><br><br>
-&gt; Tidak ada konteks.<br>
-&gt; Tidak ada sumber.<br><br>
-&gt; Dan untuk pertama kalinya— sistem tidak mencoba menjelaskan apa pun.<br>
-&gt; <i>Mengalihkan protokol investigasi ke Stage 2: Convergence...</i>
+&gt; The display blinks.<br>
+&gt; A single line of text appears: <b>YOU ARE LATE.</b><br><br>
+&gt; No origin source.<br>
+&gt; No contextual metadata.<br><br>
+&gt; And for the first time— the machine offers no clarification.<br>
+&gt; <i>Rerouting investigation protocol to Stage 2: Convergence...</i>
             </div>
             """, unsafe_allow_html=True)
 
             st.session_state.current_stage = 2
             st.rerun()
         else:
-            st.error("❌ Jawaban belum tepat. Perhatikan pola teks pada gambar ASCII buffer dump dengan teliti.")
-            st.warning("⚠️ Protokol sistem: Gagal memvalidasi token. Coba telusuri kembali huruf per huruf.")
+            st.error("❌ Keyphrase mismatch. Scrutinize the character layout on the ASCII buffer artifact carefully.")
+            st.warning("⚠️ Protocol warning: Validation failed. Retrace character sequences.")
 
     st.markdown('</div>', unsafe_allow_html=True)

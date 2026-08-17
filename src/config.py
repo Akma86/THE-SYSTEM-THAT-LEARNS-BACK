@@ -32,8 +32,9 @@ ASSET_PATHS = {
 
 # Game Configuration
 GAME_CONFIG = {
-    "title": "The Vanishing Currency // Shadow of the System",
-    "organization": "Big Data Happiness · MBC Investigasi Unit",
+    "title": "The System That Learns Back",
+    "subtitle": "A Cyber Investigation & Data Forensics Experience",
+    "organization": "Big Data Happiness · MBC Investigation Unit",
     "version": "2.4.0",
     "kaggle_archive_url": "https://www.kaggle.com/t/afff427d24eb46709efc594b4f36394c",
     "total_stages": 7,
