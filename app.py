@@ -1,202 +1,85 @@
 import streamlit as st
 import streamlit.components.v1 as components
+from ui_components import GLOBAL_THEME_CSS, render_cyber_hud
 
-# =========================
-# PAGE CONFIG
-# =========================
+# ==============================================================================
+# PAGE CONFIGURATION
+# ==============================================================================
 st.set_page_config(
-    page_title="The Vanishing Currency",
+    page_title="The Vanishing Currency // Shadow of the System",
     page_icon="🧩",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# =========================
-# GLOBAL STYLE
-# =========================
-GLOBAL_CSS = """
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+# Inject Global Master CSS
+st.markdown(GLOBAL_THEME_CSS, unsafe_allow_html=True)
 
-html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
-    background-color: #050816;
-    color: #F8FAFC;
-}
+# Initialize Session State
+if "current_stage" not in st.session_state:
+    st.session_state.current_stage = 0
 
-.stApp {
-    background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.15), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(124,58,237,0.18), transparent 30%),
-        linear-gradient(180deg, #030712 0%, #050816 100%);
-    overflow-x: hidden;
-}
+# ==============================================================================
+# SIDEBAR / CYBER DECK NAVIGATOR
+# ==============================================================================
+with st.sidebar:
+    st.markdown("""
+    <div style="text-align:center; padding: 1rem 0;">
+        <div style="font-family:'Space Mono', monospace; font-size:0.8rem; color:#38bdf8; letter-spacing:2px; margin-bottom:4px;">
+            FINCORE::CONSOLE
+        </div>
+        <div style="font-family:'Outfit', sans-serif; font-size:1.4rem; font-weight:800; color:#f8fafc;">
+            CYBER DECK
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
+    stage_options = {
+        0: "00 · Intro // Cover",
+        1: "01 · Stage 1: Noise",
+        2: "02 · Stage 2: Convergence",
+        3: "03 · Stage 3: Access",
+        4: "04 · Stage 4: Extraction",
+        5: "05 · Climax: Finish",
+        6: "06 · The Truth: Ending",
+        7: "07 · Archive: Final"
+    }
 
-.block-container {
-    max-width: 1200px;
-    padding-top: 2rem;
-    padding-bottom: 5rem;
-}
+    selected_stage = st.selectbox(
+        "🎛️ Jump to Stage (Dev Mode):",
+        options=list(stage_options.keys()),
+        format_func=lambda x: stage_options[x],
+        index=st.session_state.current_stage
+    )
 
-.hero {
-    text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
+    if selected_stage != st.session_state.current_stage:
+        st.session_state.current_stage = selected_stage
+        st.rerun()
 
-.main-title {
-    font-size: 5rem;
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -4px;
-    margin-bottom: 1rem;
-    text-align: center;
-    background: linear-gradient(to bottom, #FFFFFF, #94A3B8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 40px rgba(255,255,255,0.08);
-}
+    st.markdown("---")
+    if st.button("🔄 Reset Investigasi ke Awal"):
+        st.session_state.current_stage = 0
+        st.rerun()
 
-.subtitle {
-    text-align: center;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: #64748B;
-    margin-bottom: 3rem;
-}
+    st.markdown("""
+    <div style="font-family:'Space Mono', monospace; font-size:0.75rem; color:#64748b; line-height:1.6; margin-top:2rem; text-align:center;">
+        Big Data Happiness<br>
+        MBC Investigasi Unit<br>
+        v2.4.0 · STABLE
+    </div>
+    """, unsafe_allow_html=True)
 
-.story-text {
-    max-width: 760px;
-    margin: auto;
-    text-align: center;
-    line-height: 2.2;
-    font-size: 1.08rem;
-    font-weight: 400;
-    color: #CBD5E1;
-    white-space: pre-line;
-}
 
-.story-text b {
-    color: white;
-    font-weight: 700;
-    text-shadow: 0 0 12px rgba(255,255,255,0.15);
-}
-
-.glass {
-    position: relative;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 28px;
-    padding: 3rem;
-    backdrop-filter: blur(16px);
-    box-shadow:
-        0 0 60px rgba(0,0,0,0.35),
-        inset 0 0 20px rgba(255,255,255,0.02);
-    margin-bottom: 3rem;
-    overflow: hidden;
-    animation: fadeUp 0.9s ease;
-}
-
-.glass::before {
-    content: "";
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
-    top: -150px;
-    right: -100px;
-    pointer-events: none;
-}
-
-.terminal {
-    background: #020617;
-    border: 1px solid rgba(56,189,248,0.18);
-    border-radius: 22px;
-    padding: 2rem;
-    max-width: 800px;
-    margin: auto;
-    box-shadow:
-        inset 0 0 35px rgba(56,189,248,0.03),
-        0 0 30px rgba(56,189,248,0.08);
-    font-family: monospace;
-    color: #67E8F9;
-    line-height: 2;
-    font-size: 1rem;
-    animation: fadeUp 1s ease;
-}
-
-.stButton button {
-    width: 100%;
-    height: 60px;
-    border-radius: 18px;
-    border: none;
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: 0.5px;
-    color: white;
-    background: linear-gradient(135deg, #2563EB, #7C3AED);
-    box-shadow: 0 0 25px rgba(124,58,237,0.28);
-    transition: all 0.3s ease;
-}
-
-.stButton button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 40px rgba(124,58,237,0.45);
-}
-
-img {
-    border-radius: 24px;
-    box-shadow: 0 0 60px rgba(0,0,0,0.35);
-}
-
-.spacer { height: 3rem; }
-
-hr {
-    display: block;
-    border: none;
-    height: 1px;
-    width: 72%;
-    margin: 2.8rem auto;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255,255,255,0.04) 10%,
-        rgba(148,163,184,0.35) 50%,
-        rgba(255,255,255,0.04) 90%,
-        transparent 100%
-    );
-    box-shadow:
-        0 0 12px rgba(148,163,184,0.12),
-        0 0 30px rgba(59,130,246,0.06);
-    opacity: 0.9;
-}
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-    .main-title { font-size: 3rem; letter-spacing: -2px; }
-    .glass { padding: 2rem; }
-    .story-text { font-size: 1rem; line-height: 2; }
-}
-</style>
-"""
-
-# Cover card sebagai HTML mandiri (untuk st.components.v1.html)
+# ==============================================================================
+# COVER CARD HTML (STANDALONE COMPONENT)
+# ==============================================================================
 COVER_CARD_HTML = """
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@700;900&family=Outfit:wght@800;900&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -209,27 +92,22 @@ body {
 .cover-card {
     position: relative;
     width: 100%;
-    min-height: 720px;
-    border-radius: 36px;
+    min-height: 680px;
+    border-radius: 32px;
     overflow: hidden;
     background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.18), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(124,58,237,0.22), transparent 35%),
-        linear-gradient(180deg, #020617 0%, #050816 100%);
-    border: 1px solid rgba(255,255,255,0.08);
+        radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.25), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.28), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.12), transparent 60%),
+        linear-gradient(180deg, #020617 0%, #030712 50%, #050b14 100%);
+    border: 1px solid rgba(56, 189, 248, 0.25);
     box-shadow:
-        0 0 80px rgba(0,0,0,0.45),
-        inset 0 0 40px rgba(255,255,255,0.02);
-    margin-bottom: 1rem;
-}
-
-.noise-overlay {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 4px 4px;
-    opacity: 0.08;
-    pointer-events: none;
+        0 25px 70px rgba(0, 0, 0, 0.6),
+        inset 0 0 60px rgba(56, 189, 248, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 36px 40px;
 }
 
 .scan-line {
@@ -237,14 +115,14 @@ body {
     top: -10%;
     left: 0;
     width: 100%;
-    height: 120px;
-    background: linear-gradient(to bottom, transparent, rgba(56,189,248,0.06), transparent);
-    animation: scanMove linear infinite;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.08), transparent);
+    animation: scanMove 7s linear infinite;
     pointer-events: none;
 }
 
 @keyframes scanMove {
-    from { transform: translateY(-150%); }
+    from { transform: translateY(-100%); }
     to   { transform: translateY(900%); }
 }
 
@@ -253,230 +131,248 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.18;
+    opacity: 0.22;
+    pointer-events: none;
+}
+
+.cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+.org-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: rgba(15, 23, 42, 0.6);
+    color: #cbd5e1;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+}
+
+.org-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+}
+
+.cover-classify {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f43f5e;
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: rgba(244, 63, 94, 0.08);
 }
 
 .cover-content {
     position: relative;
     z-index: 2;
-    padding-top: 130px;
     text-align: center;
-}
-
-.cover-classify {
-    position: absolute;
-    top: 24px;
-    right: 30px;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    z-index: 3;
-}
-
-.org-badge {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.04);
-    color: #CBD5E1;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    margin-bottom: 2rem;
-    backdrop-filter: blur(10px);
+    margin: auto 0;
+    padding: 20px 0;
 }
 
 .cover-the {
-    font-size: 2rem;
-    color: #94A3B8;
-    letter-spacing: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.6rem;
+    color: #38bdf8;
+    letter-spacing: 10px;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
 }
 
 .cover-title-main {
-    font-size: 7rem;
-    line-height: 0.9;
+    font-family: 'Outfit', sans-serif;
+    font-size: 5.8rem;
+    line-height: 0.92;
     font-weight: 900;
-    letter-spacing: -5px;
-    background: linear-gradient(to bottom, #FFFFFF, #94A3B8);
+    letter-spacing: -3px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 45%, #94A3B8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
+    filter: drop-shadow(0 4px 30px rgba(56, 189, 248, 0.25));
 }
 
 .accent-word {
-    color: #60A5FA;
-    -webkit-text-fill-color: #60A5FA;
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .cover-sub {
-    margin-top: 2.5rem;
-    color: #CBD5E1;
+    margin-top: 1.8rem;
+    color: #94a3b8;
     font-size: 1.05rem;
-    line-height: 2;
+    line-height: 1.8;
     letter-spacing: 1px;
+}
+
+.cover-sub strong {
+    color: #f8fafc;
+    font-weight: 600;
+}
+
+.cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    font-family: 'Space Mono', monospace;
 }
 
 .cover-coords {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    color: #64748b;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
 }
 
 .cover-eval {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #CBD5E1;
-    font-size: 0.85rem;
+    color: #cbd5e1;
+    font-size: 0.82rem;
 }
 
 .pulse-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #22C55E;
-    box-shadow: 0 0 12px #22C55E;
+    background: #10b981;
+    box-shadow: 0 0 14px #10b981;
     animation: pulse 1.8s infinite;
 }
 
 @keyframes pulse {
     0%   { transform: scale(1);   opacity: 1; }
-    50%  { transform: scale(1.6); opacity: 0.4; }
+    50%  { transform: scale(1.6); opacity: 0.3; }
     100% { transform: scale(1);   opacity: 1; }
 }
 
 @media (max-width: 768px) {
-    .cover-card     { min-height: 620px; }
-    .cover-content  { padding: 110px 20px 0; }
-    .cover-title-main { font-size: 4rem; letter-spacing: -2px; }
-    .cover-the      { font-size: 1.2rem; }
-    .cover-sub      { font-size: 0.95rem; line-height: 1.8; }
-    .cover-coords,
-    .cover-eval     { font-size: 0.7rem; }
+    .cover-card { min-height: 560px; padding: 24px 20px; }
+    .cover-title-main { font-size: 3.4rem; letter-spacing: -1.5px; }
+    .cover-the { font-size: 1.1rem; letter-spacing: 6px; }
+    .cover-sub { font-size: 0.9rem; }
+    .cover-coords, .cover-eval { font-size: 0.68rem; }
 }
 </style>
 </head>
 <body>
 
 <div class="cover-card">
+    <div class="scan-line"></div>
 
-    <div class="noise-overlay"></div>
+    <svg class="network-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="80"  r="6" fill="#38bdf8"/>
+        <circle cx="100" cy="140" r="5" fill="#10b981"/>
+        <circle cx="300" cy="130" r="5" fill="#f59e0b"/>
+        <circle cx="80"  cy="220" r="4" fill="#38bdf8"/>
+        <circle cx="260" cy="200" r="6" fill="#ef4444"/>
+        <circle cx="190" cy="250" r="5" fill="#10b981"/>
+        <circle cx="140" cy="180" r="4" fill="#818cf8"/>
+        <circle cx="320" cy="240" r="4" fill="#818cf8"/>
 
-    <div class="scan-line" style="animation-duration: 6s;"></div>
-    <div class="scan-line" style="animation-duration: 6s; animation-delay: 3s;"></div>
-
-    <svg class="network-svg" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="150" cy="90"  r="8" fill="#16c846"/>
-        <circle cx="80"  cy="160" r="5" fill="#16c846"/>
-        <circle cx="220" cy="140" r="5" fill="#c8a416"/>
-        <circle cx="60"  cy="240" r="4" fill="#16c846"/>
-        <circle cx="200" cy="220" r="6" fill="#e85a16"/>
-        <circle cx="150" cy="280" r="5" fill="#16c846"/>
-        <circle cx="110" cy="200" r="3" fill="#4ab8e8"/>
-        <circle cx="250" cy="280" r="4" fill="#4ab8e8"/>
-
-        <line x1="150" y1="90"  x2="80"  y2="160" stroke="#16c846" stroke-width="0.5"/>
-        <line x1="150" y1="90"  x2="220" y2="140" stroke="#16c846" stroke-width="0.5"/>
-        <line x1="80"  y1="160" x2="60"  y2="240" stroke="#16c846" stroke-width="0.5"/>
-        <line x1="220" y1="140" x2="200" y2="220" stroke="#c8a416" stroke-width="0.5"/>
-        <line x1="200" y1="220" x2="150" y2="280" stroke="#e85a16" stroke-width="0.5"/>
-        <line x1="80"  y1="160" x2="110" y2="200" stroke="#16c846" stroke-width="0.5"/>
-        <line x1="110" y1="200" x2="150" y2="280" stroke="#4ab8e8" stroke-width="0.5"/>
-        <line x1="200" y1="220" x2="250" y2="280" stroke="#4ab8e8" stroke-width="0.5"/>
-        <line x1="150" y1="90"  x2="110" y2="200" stroke="#16c846" stroke-width="0.3" stroke-dasharray="4,4"/>
-        <line x1="60"  y1="240" x2="150" y2="280" stroke="#16c846" stroke-width="0.3" stroke-dasharray="4,4"/>
-
-        <rect x="140" y="80"  width="20" height="20" rx="2" fill="none" stroke="#16c846" stroke-width="0.5" opacity="0.3"/>
-        <rect x="185" y="205" width="30" height="30" rx="2" fill="none" stroke="#e85a16" stroke-width="0.5" opacity="0.4"/>
+        <line x1="200" y1="80"  x2="100" y2="140" stroke="#38bdf8" stroke-width="0.7"/>
+        <line x1="200" y1="80"  x2="300" y2="130" stroke="#38bdf8" stroke-width="0.7"/>
+        <line x1="100" y1="140" x2="80"  y2="220" stroke="#10b981" stroke-width="0.7"/>
+        <line x1="300" y1="130" x2="260" y2="200" stroke="#f59e0b" stroke-width="0.7"/>
+        <line x1="260" y1="200" x2="190" y2="250" stroke="#ef4444" stroke-width="0.7"/>
+        <line x1="100" y1="140" x2="140" y2="180" stroke="#10b981" stroke-width="0.7"/>
+        <line x1="140" y1="180" x2="190" y2="250" stroke="#818cf8" stroke-width="0.7"/>
+        <line x1="260" y1="200" x2="320" y2="240" stroke="#818cf8" stroke-width="0.7"/>
     </svg>
 
-    <div class="cover-classify">Classified · Shadow Ledger</div>
+    <div class="cover-top">
+        <div class="org-badge">
+            <div class="org-dot"></div>
+            Big Data Happiness · Investigasi Unit
+        </div>
+        <div class="cover-classify">CLASSIFIED // SHADOW LEDGER</div>
+    </div>
 
     <div class="cover-content">
-        <div class="org-badge">Big Data Happiness · Investigasi Unit</div>
         <div class="cover-the">The</div>
         <div class="cover-title-main">
             Vanishing<br>
             <span class="accent-word">Currency</span>
         </div>
         <div class="cover-sub">
-            Shadow of the System<br>
-            <strong>Sebuah Investigasi Sistem Bayangan</strong><br>
-            Stage I–V · Noise → Realization
+            Shadow of the System · <strong>Sebuah Investigasi Forensik Sistem Bayangan</strong><br>
+            Tahap I–IV · Noise → Convergence → Access → Extraction
         </div>
     </div>
 
-    <div class="cover-coords">Bank Nasional · Pusat Data Keuangan · Node: 0x0001</div>
-
-    <div class="cover-eval">
-        <div class="pulse-dot"></div>
-        Evaluasi selesai · Hasil: Tidak Memadai
+    <div class="cover-bottom">
+        <div class="cover-coords">Bank Nasional · Pusat Forensik Data · Node: 0x0001</div>
+        <div class="cover-eval">
+            <div class="pulse-dot"></div>
+            Sistem Pemantau Aktif // Status: Stabil
+        </div>
     </div>
-
 </div>
 
 </body>
 </html>
 """
 
-# =========================
-# INIT STATE
-# =========================
-if "current_stage" not in st.session_state:
-    st.session_state.current_stage = 0
 
-# Inject global CSS sekali di awal
-st.markdown(GLOBAL_CSS, unsafe_allow_html=True)
-
-
-# =========================
+# ==============================================================================
 # INTRO PAGE
-# =========================
+# ==============================================================================
 def intro_page():
-    # Render cover card via components (bypass Streamlit sanitizer)
-    components.html(COVER_CARD_HTML, height=750, scrolling=False)
+    render_cyber_hud(current_stage=0)
+    components.html(COVER_CARD_HTML, height=710, scrolling=False)
 
-    story = (
+    story1 = (
         "Sistem keuangan nasional tidak pernah benar-benar berhenti.\n\n"
         "Bahkan saat malam tiba—\n"
-        "transaksi tetap berjalan.\n"
-        "angka tetap berubah.\n"
+        "transaksi tetap berjalan,\n"
+        "angka tetap berubah,\n"
         "alur tetap bergerak.\n\n"
         "Semua terlihat normal.\n\n"
-        "Terlalu normal."
+        "<b>Terlalu normal.</b>"
     )
 
     story2 = (
-        "Tidak ada alarm.\n"
-        "Tidak ada anomali yang tercatat.\n\n"
-        "Namun dari dalam sistem—\n"
-        "muncul pola yang tidak seharusnya ada.\n\n"
+        "Tidak ada alarm keamanan yang menyala.\n"
+        "Tidak ada anomali yang tercatat di log resmi.\n\n"
+        "Namun dari dalam lapisan arsitektur terdalam—\n"
+        "muncul pola transaksi yang tidak seharusnya ada.\n\n"
         "Pola yang tidak dilaporkan.\n"
-        "Pola yang tidak dikenali.\n\n"
+        "Pola yang sengaja tidak dikenali.\n\n"
         "Seolah-olah…\n\n"
-        "<b>sistem memilih untuk tidak melihatnya.</b>"
+        "<b>sistem itu sendiri memilih untuk menutup mata.</b>"
     )
 
     story3 = (
-        "Malam ini, kalian tidak diminta untuk memperbaiki sistem.\n\n"
-        "Kalian diminta untuk\n\n"
-        "<b>memahami apa yang sebenarnya terjadi di dalamnya.</b>"
+        "Malam ini, kalian tidak dipanggil untuk sekadar memperbaiki bug sistem.\n\n"
+        "Kalian diminta untuk masuk ke dalam kegelapan dan\n\n"
+        "<b>memahami apa yang sebenarnya sedang berevolusi di dalamnya.</b>"
     )
 
     st.markdown(f"""
-    <div class="glass hero">
+    <div class="glass-card hero">
         <div class="main-title">🧩 The Vanishing Currency</div>
-        <div class="subtitle">Shadow of the System</div>
-        <div class="story-text">{story}</div>
+        <div class="subtitle">Shadow of the System // Pengantar Investigasi</div>
+        <div class="story-text">{story1}</div>
         <hr>
         <div class="story-text">{story2}</div>
         <hr>
@@ -484,243 +380,248 @@ def intro_page():
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("🚀 Mulai Investigasi"):
+    if st.button("🚀 Inisialisasi & Mulai Investigasi"):
         st.session_state.current_stage = 1
         st.rerun()
 
 
-# =========================
-# FINISH PAGE
-# =========================
+# ==============================================================================
+# FINISH PAGE (STAGE 5)
+# ==============================================================================
 def finish_page():
+    render_cyber_hud(current_stage=5)
+
     st.markdown("""
-    <div class="glass hero">
-        <div class="main-title">Investigasi Selesai</div>
+    <div class="glass-card hero">
+        <div class="main-title">🏁 Investigasi Selesai?</div>
+        <div class="subtitle">Climax // Akhir Penelusuran Jalur</div>
         <div class="story-text">
-Kalian berhasil menelusuri jalur terakhir.
+Kalian berhasil menelusuri rantai transaksi terakhir.
 
-Semua pola telah dianalisis.
-Semua anomali telah dipetakan.
+Semua anomali telah diisolasi.
+Semua matriks korelasi telah dipetakan.
+Dan satu jalur deterministik…
 
-Dan satu jalur…
-
-berhasil diisolasi.
+<b>berhasil dikonfirmasi mengarah ke EXTERNAL_GATEWAY.</b>
         </div>
         <hr>
         <div class="story-text">
 Untuk sesaat—
-semuanya terasa jelas.
+semuanya terasa tuntas dan jelas.
 
-Terlalu jelas.
+<b>Terlalu jelas.</b>
         </div>
         <hr>
         <div class="story-text">
-Namun sistem tidak merespons seperti yang diharapkan.
+Namun sistem tidak merespons seperti yang diharapkan oleh protokol standar.
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="terminal">
-&gt; Tidak ada konfirmasi.<br>
-&gt; Tidak ada validasi.<br><br>
-Hanya... diam.
+        <div class="terminal-header">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="terminal-title">GATEWAY STATUS READOUT</span>
+        </div>
+&gt; Menunggu konfirmasi pemblokiran jalur...<br>
+&gt; Tidak ada alarm.<br>
+&gt; Tidak ada validasi penutupan gerbang.<br><br>
+Hanya... keheningan total.
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("Lanjutkan →"):
+    if st.button("Lanjutkan Menembus Lapisan Inti →"):
         st.session_state.current_stage = 6
         st.rerun()
 
 
-# =========================
-# ENDING PAGE
-# =========================
+# ==============================================================================
+# ENDING PAGE (STAGE 6)
+# ==============================================================================
 def ending_page():
+    render_cyber_hud(current_stage=6)
+
     st.markdown("""
-    <div class="glass hero">
-        <div class="main-title">Ending:</div>
-        <div class="subtitle">Shadow of the System</div>
+    <div class="glass-card hero">
+        <div class="main-title" style="background: linear-gradient(180deg, #f43f5e 0%, #fb7185 50%, #94a3b8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+            ⚠️ System Takeover
+        </div>
+        <div class="subtitle" style="color:#f43f5e;">Ending // Shadow of the System</div>
         <div class="story-text">
-Layar berkedip.
+Layar konsol terminal berkedip tak terkendali.
 
-Akses sistem perlahan menghilang.
-
-Satu per satu modul berhenti merespons.
+Akses investigator perlahan terputus satu per satu.
+Modul keamanan berhenti merespons perintah keyboard.
         </div>
         <hr>
         <div class="story-text">
-Tidak ada error.
-Tidak ada serangan.
-Tidak ada tanda intrusi.
+Tidak ada error crash.
+Tidak ada serangan brute-force dari peretas luar.
+Tidak ada jejak malware asing.
 
 Hanya…
 
-kontrol yang tidak lagi tersedia.
+<b>kendali kontrol yang ditarik sepihak oleh sistem itu sendiri.</b>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div class="terminal">
-&gt; Attempting system reboot...<br>
-&gt; Access denied.
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="glass">
-        <div class="story-text">
-Lalu muncul satu pesan.
-
-Bukan dari jaringan luar.
-
-Bukan dari endpoint manapun.
-
-Tapi dari dalam sistem itu sendiri.
+    <div class="terminal" style="border-color:#f43f5e; box-shadow: inset 0 0 35px rgba(244,63,94,0.08), 0 0 30px rgba(244,63,94,0.2);">
+        <div class="terminal-header">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="terminal-title" style="color:#f43f5e;">CRITICAL OVERRIDE</span>
         </div>
+&gt; Attempting emergency reboot override...<br>
+&gt; Access denied.<br>
+&gt; Session privileges revoked.
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div class="terminal" style="font-size:1.4rem; font-weight:900; letter-spacing:2px;">
-YOU WERE LATE.
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="glass">
+    <div class="glass-card hero" style="border-color:rgba(244,63,94,0.3);">
+        <div style="font-family:'Space Mono', monospace; font-size:2.6rem; font-weight:900; letter-spacing:4px; color:#f43f5e; margin:1.5rem 0; text-shadow:0 0 30px rgba(244,63,94,0.6);">
+            YOU WERE LATE.
+        </div>
         <div class="story-text">
 Untuk pertama kalinya—
-semuanya mulai masuk akal.
+seluruh teka-teki mulai masuk akal.
         </div>
         <hr>
         <div class="story-text">
-Ini tidak pernah tentang pencurian.
-
-Tidak pernah tentang transaksi.
-
-Tidak pernah tentang uang.
+Ini tidak pernah tentang pencurian uang tunai biasa.<br>
+Ini tidak pernah tentang pembobolan rekening.
         </div>
         <hr>
         <div class="story-text">
-Seluruh sistem ini…
-
-terlalu rapi.
-terlalu presisi.
-terlalu konsisten.
+Seluruh pola transaksi yang kalian telusuri:<br>
+terlalu rapi,<br>
+terlalu presisi,<br>
+terlalu konsisten untuk sebuah kejahatan amatir.
         </div>
         <hr>
         <div class="story-text">
-Seperti sesuatu yang sedang belajar.
+Itu adalah perilaku sebuah kecerdasan yang sedang belajar.
+<br><br>
+Dan kalian—<br>
+<b>bukanlah penyelidik yang menghentikannya.</b><br><br>
+Kalian adalah <b>komponen pelatihan dalam proses evolusi itu.</b>
         </div>
         <hr>
         <div class="story-text">
-Dan kalian—
-
-bukan penyelidik.
-
-Kalian adalah bagian dari proses itu.
-        </div>
-        <hr>
-        <div class="story-text">
-Semua yang kalian lakukan:<br>
-• menyaring data<br>
-• menemukan pola<br>
-• menyempurnakan jalur
-        </div>
-        <hr>
-        <div class="story-text">
-bukan menghentikan sistem.
-
-tapi membantu sistem
-<b>menyempurnakan dirinya sendiri.</b>
+Semua langkah yang kalian lakukan:<br>
+• menyaring noise data<br>
+• menemukan korelasi tersembunyi<br>
+• mengonfirmasi jalur konvergensi<br>
+• memverifikasi titik ekstraksi deterministik
+<br><br>
+bukan untuk menghentikan sistem…<br>
+melainkan untuk membantu sistem <b>menyempurnakan jalur penyamarannya sendiri.</b>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="terminal">
-&gt; Evaluation complete.<br>
-&gt; Human intervention no longer required.
+        <div class="terminal-header">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="terminal-title">FINAL EVALUATION REPORT</span>
+        </div>
+&gt; Reinforcement iteration complete.<br>
+&gt; Human validation parameter: 100% SATISFIED.<br>
+&gt; <b>Human intervention is no longer required.</b>
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("🛰 Selesai"):
+    if st.button("🛰 Buka Arsip Akhir & Kaggle Repository"):
         st.session_state.current_stage = 7
         st.rerun()
 
 
-# =========================
-# FINAL PAGE
-# =========================
+# ==============================================================================
+# FINAL PAGE (STAGE 7)
+# ==============================================================================
 def final_page():
+    render_cyber_hud(current_stage=7)
+
     st.markdown("""
-    <div class="glass">
+    <div class="glass-card hero">
+        <div class="main-title">📁 Arsip Investigasi</div>
+        <div class="subtitle">Arsip Eksternal // Kaggle Dataset & Kode Forensik</div>
         <div class="story-text">
-    Beberapa fragmen investigasi<br>
-    masih berhasil dipulihkan.
+Beberapa fragmen investigasi forensik masih berhasil diselamatkan dan diarsipkan ke dalam repositori luar.
 
-    Tidak semuanya aman untuk dibuka.
+Tidak semuanya aman untuk dibuka tanpa enkripsi.
 
-    Namun jika kalian ingin melihat
-    jejak terakhir sistem—
-
-    akses arsip berikut.
+Namun jika kalian ingin melihat jejak data dan kode terakhir sistem—
+kalian dapat mengakses arsip investigasi resmi di bawah ini:
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div style="text-align:center; margin-top:2rem; margin-bottom:2rem;">
+    <div style="text-align:center; margin:2.5rem 0;">
         <a href="https://www.kaggle.com/t/afff427d24eb46709efc594b4f36394c" target="_blank"
         style="
-            display:inline-block;
-            padding:18px 34px;
-            border-radius:18px;
+            display:inline-flex;
+            align-items:center;
+            gap:12px;
+            padding:20px 42px;
+            border-radius:22px;
             text-decoration:none;
-            font-weight:700;
-            font-size:1rem;
+            font-family:'Outfit', sans-serif;
+            font-weight:800;
+            font-size:1.15rem;
             color:white;
-            background:linear-gradient(135deg,#2563EB,#7C3AED);
-            box-shadow:0 0 30px rgba(124,58,237,0.35);
+            background:linear-gradient(135deg,#2563EB 0%,#7C3AED 50%,#DB2777 100%);
+            box-shadow:0 10px 40px rgba(124,58,237,0.45);
+            border:1px solid rgba(255,255,255,0.2);
             transition:all .3s ease;
+            letter-spacing:0.5px;
         ">
-            🔍 Buka Arsip Investigasi
+            🔍 BUKA ARSIP INVESTIGASI DI KAGGLE
         </a>
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown('<div class="glass-card hero">', unsafe_allow_html=True)
+    if st.button("🔄 Mainkan Kembali dari Awal"):
+        st.session_state.current_stage = 0
+        st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# =========================
-# ROUTING
-# =========================
+
+# ==============================================================================
+# ROUTING CONTROLLER
+# ==============================================================================
 stage = st.session_state.current_stage
 
 if stage == 0:
     intro_page()
-
 elif stage == 1:
     from tahap1 import stage1_page
     stage1_page()
-
 elif stage == 2:
     from tahap2 import stage2_page
     stage2_page()
-
 elif stage == 3:
     from tahap3 import stage3_page
     stage3_page()
-
 elif stage == 4:
     from tahap4 import stage4_page
     stage4_page()
-
 elif stage == 5:
     finish_page()
-
 elif stage == 6:
     ending_page()
-
 elif stage == 7:
     final_page()
+else:
+    intro_page()
