@@ -11,6 +11,7 @@ venv/
 ENV/
 .vscode/
 .idea/
+.claude/
 .DS_Store
 
 # Streamlit config

@@ -1,5 +1,5 @@
 """
-Master CSS Design System for The Vanishing Currency.
+Master CSS Design System for The System That Learns Back.
 """
 
 GLOBAL_THEME_CSS = """

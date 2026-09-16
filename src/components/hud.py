@@ -1,5 +1,5 @@
 """
-Cyber HUD Navigation component for The Vanishing Currency.
+Cyber HUD Navigation component for The System That Learns Back.
 """
 import streamlit as st
 

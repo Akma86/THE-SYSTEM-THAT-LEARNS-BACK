@@ -7,9 +7,12 @@
 [![Streamlit App](https://img.shields.io/badge/Streamlit-1.35%2B-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![NetworkX](https://img.shields.io/badge/NetworkX-Graph%20Theory-005C94?style=for-the-badge)](https://networkx.org/)
 [![Theme](https://img.shields.io/badge/Design-Cyberpunk%20Glassmorphism-06B6D4?style=for-the-badge)](https://github.com/Akma86/THE-SYSTEM-THAT-LEARNS-BACK)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Status](https://img.shields.io/badge/Release-v2.4.0%20Stable-10B981?style=for-the-badge)](https://github.com/Akma86/THE-SYSTEM-THAT-LEARNS-BACK)
 
 *Developed for **Big Data Happiness — MBC Investigation Unit***
+
+> **An interactive cyber investigation, data forensics, and graph theory experience built with Streamlit and NetworkX.**
 
 ---
 
@@ -32,12 +35,8 @@ The codebase is built on a clean, modular, and extensible architecture that isol
 ```text
 The-System-That-Learns-Back/
 ├── app.py                          # 🚀 Main entrypoint Streamlit web application
-├── tahap1.py                       # 🔌 Legacy bridge adapter: Stage 1
-├── tahap2.py                       # 🔌 Legacy bridge adapter: Stage 2
-├── tahap3.py                       # 🔌 Legacy bridge adapter: Stage 3
-├── tahap4.py                       # 🔌 Legacy bridge adapter: Stage 4
-├── ui_components.py                # 🔌 Legacy bridge adapter: UI components
 ├── requirements.txt                # 📦 Python package dependencies
+├── LICENSE                         # 📄 MIT open-source license
 ├── .gitignore                      # 🛡️ Git ignore configuration
 ├── README.md                       # 📖 Official project documentation
 │
@@ -171,6 +170,12 @@ Open your browser at `http://localhost:8501`.
 - **Graph & Plotting Engine**: [NetworkX](https://networkx.org/), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/)
 - **Image Handling**: [Pillow (PIL)](https://python-pillow.org/)
 - **Styling**: Semantic HTML5, Vanilla CSS3 (Glassmorphism Tokens & Cyber Animations)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ---
 

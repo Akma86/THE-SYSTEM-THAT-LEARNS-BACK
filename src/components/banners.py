@@ -1,5 +1,5 @@
 """
-Stage animated banner components for The Vanishing Currency.
+Stage animated banner components for The System That Learns Back.
 """
 import streamlit as st
 
